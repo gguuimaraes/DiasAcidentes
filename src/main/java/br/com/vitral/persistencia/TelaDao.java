@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import br.com.vitral.entidade.Tela;
+import br.com.vitral.entidade.Acidente;
 import br.com.vitral.modelo.TelaModel;
 import br.com.vitral.util.Uteis;
 
@@ -17,18 +17,18 @@ public class TelaDao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Inject
-	Tela tela;
+	Acidente tela;
 	EntityManager entityManager;
 
 	public void salvar(TelaModel telaModel) {
 		entityManager = Uteis.JpaEntityManager();
 		if (telaModel.getId() == null) {
-			tela = new Tela();
+			tela = new Acidente();
 			tela.setUrl(telaModel.getUrl());
 			tela.setSegundos(telaModel.getSegundos());
 			entityManager.persist(tela);
 		} else {
-			tela = entityManager.find(Tela.class, telaModel.getId());
+			tela = entityManager.find(Acidente.class, telaModel.getId());
 			tela.setUrl(telaModel.getUrl());
 			tela.setSegundos(telaModel.getSegundos());
 			entityManager.merge(tela);
@@ -40,9 +40,9 @@ public class TelaDao implements Serializable {
 		entityManager = Uteis.JpaEntityManager();
 		Query query = entityManager.createNamedQuery("Tela.findAll");
 		@SuppressWarnings("unchecked")
-		Collection<Tela> telas = (Collection<Tela>) query.getResultList();
+		Collection<Acidente> telas = (Collection<Acidente>) query.getResultList();
 		TelaModel telaModel = null;
-		for (Tela t : telas) {
+		for (Acidente t : telas) {
 			telaModel = new TelaModel();
 			telaModel.setId(t.getId());
 			telaModel.setUrl(t.getUrl());
@@ -54,6 +54,6 @@ public class TelaDao implements Serializable {
 
 	public void remover(int id) {
 		entityManager = Uteis.JpaEntityManager();
-		entityManager.remove(entityManager.find(Tela.class, id));
+		entityManager.remove(entityManager.find(Acidente.class, id));
 	}
 }

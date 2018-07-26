@@ -1,6 +1,7 @@
 package br.com.vitral.entidade;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,18 +12,16 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import br.com.vitral.modelo.UsuarioModel;
-
-@Table(name = "tela")
+@Table(name = "acidente")
 @Entity
 
 @NamedQueries({
 
-		@NamedQuery(name = "Tela.findTela", query = "SELECT t FROM Tela t WHERE t.url = :url"),
-		@NamedQuery(name = "Tela.findAll", query = "SELECT t FROM Tela t")
+		@NamedQuery(name = "Acidente.findAcidente", query = "SELECT a FROM Acidente a WHERE a.id = :a"),
+		@NamedQuery(name = "Acidente.findAll", query = "SELECT a FROM Acidente a")
 
 })
-public class Tela implements Serializable {
+public class Acidente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,11 +30,11 @@ public class Tela implements Serializable {
 	@Column(name = "id")
 	private Integer id;
 
-	@Column(name = "url", unique = true)
-	private String url;
+	@Column(name = "obs")
+	private String obs;
 
-	@Column(name = "segundos")
-	private Integer segundos;
+	@Column(name = "data")
+	private Date data;
 
 	public Integer getId() {
 		return id;
@@ -45,19 +44,21 @@ public class Tela implements Serializable {
 		this.id = id;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getObs() {
+		return obs;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setObs(String obs) {
+		this.obs = obs;
 	}
 
-	public Integer getSegundos() {
-		return segundos;
+	public Date getData() {
+		return data;
 	}
 
-	public void setSegundos(Integer segundos) {
-		this.segundos = segundos;
+	public void setData(Date data) {
+		this.data = data;
 	}
+
+	
 }

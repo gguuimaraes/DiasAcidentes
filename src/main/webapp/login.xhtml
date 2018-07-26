@@ -8,19 +8,20 @@
 </h:head>
 
 <h:body style="display:flex;">
-	<h:form style=" margin:auto;">
-		<p:graphicImage url="/resources/imagens/logo.jpg" width="200px" style="margin-left: auto" />
-		<p:growl id="growl-mensagem" showDetail="true" sticky="true" />
-		<p:panel id="panel-login-principal" header="Login" footer="Controla Tela" style="width:400px;">
-			<h:panelGrid columns="2" cellpadding="10">
-				<h:panelGrid columns="2" cellpadding="5">
-					<p:outputLabel value="Nome" />
-					<p:inputText id="txtNome" value="#{loginController.usuarioModel.nome}" />
-					<p:outputLabel value="Senha" />
-					<p:password id="txtSenha" value="#{loginController.usuarioModel.senha}" />
-					<p:commandButton value="Acessar" id="btnAcessar" icon="ui-icon-gear" action="#{loginController.login}"
-						update="growl-mensagem" />
-				</h:panelGrid>
+	<h:form style="margin:auto">
+		<p:growl id="msg" showDetail="true" sticky="true" />
+		<p:panel header="Controla Tela">
+			<h:panelGrid cellpadding="10">
+				<p:graphicImage url="/resources/imagens/logo.jpg" width="250px" />
+			</h:panelGrid>
+			<h:panelGrid columns="2" cellpadding="10" style="width: 100%">
+				<p:outputLabel value="Nome" />
+				<p:inputText id="txtNome" value="#{loginController.usuarioModel.nome}" style="width: calc(100% - 10px)" />
+				<p:outputLabel value="Senha" />
+				<p:password id="txtSenha" value="#{loginController.usuarioModel.senha}" style="width: calc(100% - 10px)" />
+			</h:panelGrid>
+			<h:panelGrid cellpadding="10">
+				<p:commandButton value="Acessar" id="btnAcessar" icon="ui-icon-gear" action="#{loginController.login}" update="msg" />
 			</h:panelGrid>
 		</p:panel>
 	</h:form>

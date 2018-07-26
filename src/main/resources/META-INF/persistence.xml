@@ -11,7 +11,7 @@
  
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/controlatela" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/diasacidentes" />
             <property name="javax.persistence.jdbc.user" value="postgres" />
             <property name="javax.persistence.jdbc.password" value="postgres" />
  

@@ -16,7 +16,7 @@
 			icon="ui-icon-document" url="tela.xhtml"/> 
 		<p:menuitem
 			value="Usuario"
-			icon="ui-icon-document" url="usuario.xhtml" rendered="#{usuarioController.usuarioAutenticado.tipo == usuarioController.tipos[0]}"/>
+			icon="ui-icon-document" url="usuario.xhtml" rendered="#{loginController.usuarioAutenticado.tipo == loginController.tipos[0]}"/>
 
 		<f:facet name="options">
 			<p:commandButton

@@ -6,14 +6,10 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.PrimeFaces;
-import org.primefaces.context.PrimeFacesContext;
-import org.primefaces.context.RequestContext;
 import org.primefaces.event.RowEditEvent;
 
 import br.com.vitral.modelo.TelaModel;
@@ -43,7 +39,6 @@ public class TelaController implements Serializable {
 	public void cadastrar() {
 		telaModel = new TelaModel();
 		PrimeFaces.current().executeScript("PF('dialogCadastro').show();");
-		//RequestContext.getCurrentInstance().execute("PF('dialogCadastro').show();");
 	}
 
 	public void salvar() {
@@ -51,7 +46,6 @@ public class TelaController implements Serializable {
 		init();
 		this.telaModel = new TelaModel();
 		PrimeFaces.current().executeScript("PF('dialogCadastro').hide();");
-		//RequestContext.getCurrentInstance().execute("PF('dialogCadastro').hide();");
 		Uteis.MensagemInfo("Tela cadastrada com sucesso");
 	}
 
