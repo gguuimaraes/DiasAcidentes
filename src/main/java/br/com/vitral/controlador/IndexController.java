@@ -9,8 +9,8 @@ import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.com.vitral.modelo.TelaModel;
-import br.com.vitral.persistencia.TelaDao;
+import br.com.vitral.modelo.AcidenteModel;
+import br.com.vitral.persistencia.AcidenteDao;
 
 @Named(value = "indexController")
 @SessionScoped
@@ -18,42 +18,30 @@ public class IndexController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Produces
-	List<TelaModel> telas;
-
+	/*
+	 * @Produces List<AcidenteModel> telas;
+	 * 
+	 * @Inject AcidenteDao telaDao;
+	 * 
+	 * AcidenteModel telaAtual;
+	 */
 	@Inject
-	TelaDao telaDao;
-
-	TelaModel telaAtual;
-	int posicao;
+	AcidenteDao acidenteDao;
 
 	@PostConstruct
 	private void init() {
-		telas = telaDao.listar();
-		if (telas.size() > 0) {
-			telaAtual = telas.get(0);
-			posicao = 0;
-		}
 	}
 
 	public void listener() {
-		telas = telaDao.listar();
-		if (posicao + 1 < telas.size()) {
-			posicao++;
-		} else {
-			posicao = 0;
-		}
-		if (telas.size() > 0) {
-			telaAtual = telas.get(posicao);
-		}
+		
 	}
 
-	public TelaModel getTelaAtual() {
-		return telaAtual;
+	public long getDiasSemAcidentes() {
+		return acidenteDao.getDiasSemAcidente();
 	}
 
-	public void setTelaAtual(TelaModel telaAtual) {
-		this.telaAtual = telaAtual;
+	public long getRecorde() {
+		return acidenteDao.getRecorde();
 	}
 
 }

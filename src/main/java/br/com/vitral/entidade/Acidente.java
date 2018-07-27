@@ -17,8 +17,10 @@ import javax.persistence.Table;
 
 @NamedQueries({
 
-		@NamedQuery(name = "Acidente.findAcidente", query = "SELECT a FROM Acidente a WHERE a.id = :a"),
-		@NamedQuery(name = "Acidente.findAll", query = "SELECT a FROM Acidente a")
+		//@NamedQuery(name = "Acidente.findAcidente", query = "SELECT a FROM Acidente a WHERE a.id = :a"),
+		@NamedQuery(name = "Acidente.findAll", query = "SELECT a FROM Acidente a"),
+		@NamedQuery(name= "Acidente.findAcidenteMaisRecente", query = "SELECT MAX(a.data) FROM Acidente a"),
+		@NamedQuery(name= "Acidente.findAcidenteMaisAntigo", query = "SELECT MIN(a.data) FROM Acidente a")
 
 })
 public class Acidente implements Serializable {

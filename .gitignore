@@ -14,7 +14,7 @@ buildNumber.properties
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
->>>>>>> branch 'master' of https://github.com/gguuimaraes/ControlaTela.git
+>>>>>>> branch 'master' of https://github.com/gguuimaraes/DiasAcidentes.git
 =======
 target/
 pom.xml.tag
