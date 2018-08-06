@@ -54,22 +54,40 @@ public class AcidenteDao implements Serializable {
 		return acidentesModel;
 	}
 
+	private Date getDataMaisRecente() {
+		return (Date) Uteis.JpaEntityManager().createNamedQuery("Acidente.findDataMaisRecente").getSingleResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	private List<Date> listarDatasOrdenadas() {
+		return Uteis.JpaEntityManager().createNamedQuery("Acidente.findDatasOrdenadas").getResultList();
+	}
+
 	public void remover(int id) {
-		entityManager = Uteis.JpaEntityManager();
-		entityManager.remove(entityManager.find(Acidente.class, id));
+		Uteis.JpaEntityManager().remove(Uteis.JpaEntityManager().find(Acidente.class, id));
 	}
 
 	public long getDiasSemAcidente() {
-		return TimeUnit.DAYS.convert(
-				new Date().getTime() - ((Date) Uteis.JpaEntityManager()
-						.createNamedQuery("Acidente.findAcidenteMaisRecente").getSingleResult()).getTime(),
-				TimeUnit.MILLISECONDS);
+		return TimeUnit.DAYS.convert(new Date().getTime() - getDataMaisRecente().getTime(), TimeUnit.MILLISECONDS);
 	}
-	
+
 	public long getRecorde() {
-		return TimeUnit.DAYS.convert(
-				new Date().getTime() - ((Date) Uteis.JpaEntityManager()
-						.createNamedQuery("Acidente.findAcidenteMaisAntigo").getSingleResult()).getTime(),
+		List<Date> datas = listarDatasOrdenadas();
+		if (datas.size() == 0)
+			return 0;
+
+		long maiorDiferenca = TimeUnit.DAYS.convert(new Date().getTime() - datas.get(datas.size() - 1).getTime(),
 				TimeUnit.MILLISECONDS);
+
+		for (int i = 0; i < datas.size() - 1; i++) {
+			long diferenca = TimeUnit.DAYS.convert(datas.get(i + 1).getTime() - datas.get(i).getTime(),
+					TimeUnit.MILLISECONDS);
+
+			if (diferenca > maiorDiferenca) {
+				maiorDiferenca = diferenca;
+			}
+		}
+
+		return maiorDiferenca;
 	}
 }

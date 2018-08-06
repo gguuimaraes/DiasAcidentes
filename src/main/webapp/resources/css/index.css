@@ -1,0 +1,29 @@
+body {
+	margin: 0;
+	text-align: center;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 5.5vw;
+	color: white;
+}
+
+#textos {
+	margin-top: 20px;
+	margin-left: 20px;
+	border-radius: 45px;
+	background: #00A551;
+	width: calc(100vw - 40px);
+	/* height: 45vh; */
+	border-radius: 45px;
+}
+
+#imagens {
+	height: calc(45vh - 50px);
+	width: 100%;
+	padding-left: calc(100vw * 0.078125);
+	padding-right: calc(100vw * 0.078125);
+}
+
+img {
+	width: 21vw;
+}

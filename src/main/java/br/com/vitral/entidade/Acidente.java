@@ -19,7 +19,8 @@ import javax.persistence.Table;
 
 		//@NamedQuery(name = "Acidente.findAcidente", query = "SELECT a FROM Acidente a WHERE a.id = :a"),
 		@NamedQuery(name = "Acidente.findAll", query = "SELECT a FROM Acidente a"),
-		@NamedQuery(name= "Acidente.findAcidenteMaisRecente", query = "SELECT MAX(a.data) FROM Acidente a"),
+		@NamedQuery(name = "Acidente.findDatasOrdenadas", query = "SELECT a.data FROM Acidente a ORDER BY a.data"),
+		@NamedQuery(name= "Acidente.findDataMaisRecente", query = "SELECT MAX(a.data) FROM Acidente a"),
 		@NamedQuery(name= "Acidente.findAcidenteMaisAntigo", query = "SELECT MIN(a.data) FROM Acidente a")
 
 })

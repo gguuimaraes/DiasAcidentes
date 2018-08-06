@@ -1,37 +1,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<h:outputStylesheet library="css" name="index.css" />
 </h:head>
 
-<h:body style="font-family: Arial; margin: 0;">
-
-	<!-- <p:graphicImage url="/resources/imagens/logo.jpg" width="300px" style="position: absolute; margin-top: 70px; margin-left: 30px" />
-	<p:graphicImage url="/resources/imagens/cipa.jpg" width="200px" style="position: absolute; margin-top: 40px; margin-left: 1136px" /> -->
-
-	<!-- <h:panelGrid columns="1" style="text-align: center; margin-top: 68px; margin-left:auto; margin-right: auto">
-		<h:outputLabel value="ESTAMOS TRABALHANDO" style="font-size: 70px" />
-		<h:outputLabel value="HÁ #{indexController.diasSemAcidentes} DIAS" style="font-size: 70px" />
-		<h:outputLabel value="SEM ACIDENTES DE TRABALHO" style="font-size: 70px" />
-		<h:outputLabel value="NOSSO RECORDE É DE #{indexController.recorde} DIAS." style="font-size: 70px" />
-	</h:panelGrid> -->
-
-
-	<h:panelGrid columns="1"
-		style="border-radius:40px; background: #00A551; margin-top: 20px; margin-left: 20px; width: 1240px; text-align: center; color: white; font-family: Arial;
-    font-size: 80px;
-    font-weight: bold;">
-		<h:outputLabel value="CIPA" style="font-size: 120px" />
-		<h:outputLabel value="Estamos trabalhando há #{indexController.diasSemAcidentes} dias sem acidentes de trabalho." />
+<h:body>
+	<h:panelGrid id="textos" columns="1">
+		<h:outputLabel value="CIPA" style="font-size: 8vw" />
+		<h:outputLabel value="Estamos trabalhando há #{indexController.diasSemAcidentes} dias" />
+		<h:outputLabel value="sem acidentes de trabalho." />
 		<h:outputLabel value="Nosso recorde é de #{indexController.recorde} dias." />
 	</h:panelGrid>
-	<h:panelGrid columns="2" cellpadding="10" style="margin: auto; text-align: center">
-		<p:graphicImage url="/resources/imagens/cipa.jpg" width="230px" style="margin-right: 120px" />
-		<p:graphicImage url="/resources/imagens/logo.jpg" width="330px" style="margin-left: 120px" />
+	<h:panelGrid id="imagens" columns="2">
+		<p:graphicImage url="/resources/imagens/cipa.jpg" />
+		<p:graphicImage url="/resources/imagens/logo.jpg" />
 	</h:panelGrid>
-
 </h:body>
 </html>

@@ -17,11 +17,10 @@
 		<p:menuitem
 			value="Usuário"
 			icon="ui-icon-document" url="usuario.xhtml" rendered="#{loginController.usuarioAutenticado.tipo == loginController.tipos[0]}"/>
-
 		<f:facet name="options">
 			<p:commandButton
 				value="Logout"
-				icon="ui-icon-extlink" action="#{usuarioController.logout}"/>
+				icon="ui-icon-extlink" action="#{loginController.logout}"/>
 		</f:facet>
 	</p:menubar>
 
