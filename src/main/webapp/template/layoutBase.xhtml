@@ -7,18 +7,19 @@
 	<h:outputStylesheet library="css" name="default.css" />
 	<link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/imagens/favicon.ico" />
 	<title>Dias Acidentes</title>
+	<h:outputScript library="js" name="faicons.js" />
 </h:head>
 <h:body>
 	<div id="header">
 		<ui:include src="header.xhtml" />
 	</div>
 
-	<div id="content" style="margin: 50px 10px">
+	<div id="content" style="margin: 10px 10px">
 		<ui:insert name="content" />
 	</div>
 
-	<div id="footer">
+	<!-- <div id="footer">
 		<ui:include src="footer.xhtml" />
-	</div>
+	</div> -->
 </h:body>
 </html>

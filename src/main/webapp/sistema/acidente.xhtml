@@ -10,7 +10,7 @@
 <ui:composition template="/template/layoutBase.xhtml">
 
 	<ui:define name="content">
-		<p:commandButton icon="ui-icon-plus" actionListener="#{acidenteController.cadastrar}" value="Cadastrar" ajax="true"
+		<p:commandButton icon="fa fa-fw fa-plus" actionListener="#{acidenteController.cadastrar}" value="Cadastrar" ajax="true"
 			update="dialogCadastro" style="margin-bottom: 10px" />
 
 		<p:dialog header="Cadastro Acidente" id="dialogCadastro" widgetVar="dialogCadastro" modal="true">
@@ -25,7 +25,7 @@
 				<p:ajax event="rowEdit" listener="#{acidenteController.onRowEdit}" update=":form:msgs" />
 				<p:ajax event="rowEditCancel" listener="#{acidenteController.onRowCancel}" update=":form:msgs" />
 
-				<p:column headerText="Id">
+				<!-- <p:column headerText="Id">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{acidente.id}" />
@@ -34,7 +34,7 @@
 							<p:inputText value="#{acidente.id}" style="width:100%" />
 						</f:facet>
 					</p:cellEditor>
-				</p:column>
+				</p:column> -->
 
 				<p:column headerText="Observação">
 					<p:cellEditor>
@@ -43,12 +43,12 @@
 						</f:facet>
 						<f:facet name="input">
 							<p:inputText value="#{acidente.obs}" maxlength="255" required="true"
-								requiredMessage="A Observação é de preenchimento obrigatório" style="width:100%" />
+								requiredMessage="A Observação é de preenchimento obrigatório" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Data">
+				<p:column headerText="Data" style="width: 6%">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{acidente.data}">
@@ -56,20 +56,18 @@
 							</h:outputText>
 						</f:facet>
 						<f:facet name="input">
-							<!-- <p:inputText value="#{acidente.data}" required="true" requiredMessage="A Data é de preenchimento obrigatório"
-								style="width:100%" /> -->
-							<p:calendar id="txtData" value="#{acidente.data}" required="true"
-								requiredMessage="A Data é de preenchimento obrigatório" inputStyle="width:100%"/>
+							<p:calendar id="txtData" value="#{acidente.data}" required="true" mask="99/99/9999" pattern="dd/MM/yyyy"
+								requiredMessage="A Data é de preenchimento obrigatório" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 
-				<p:column style="width:32px">
-					<p:rowEditor />
+				<p:column styleClass="colicone coleditar">
+					<p:rowEditor editTitle="Editar" cancelTitle="Cancelar" saveTitle="Salvar" />
 				</p:column>
 
-				<p:column style="width:16px">
-					<p:commandLink actionListener="#{acidenteController.excluir(acidente)}" update=":form">
+				<p:column styleClass="colicone colexcluir">
+					<p:commandLink title="Excluir" actionListener="#{acidenteController.excluir(acidente)}" update=":form">
 						<h:outputText class="ui-icon ui-icon-trash" />
 					</p:commandLink>
 				</p:column>

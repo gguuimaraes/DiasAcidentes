@@ -1,6 +1,5 @@
-/*tamanho da fonte dos componentes do primefaces*/
 .ui-widget {
-	font-size: 12px !important;
+	font-size: 14px !important;
 }
 
 html, body {
@@ -10,7 +9,6 @@ html, body {
 }
 
 #content {
-	min-height: 93%;
 	position: relative;
 }
 
@@ -29,4 +27,61 @@ html, body {
 	width: 100%;
 	height: 20px;
 	background: #BDBDBD;
+}
+
+.colicone span {
+	background: none !important;
+	text-indent: initial;
+	display: inline-block;
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	transform: translate(0, 0);
+}
+
+.colicone span:hover {
+	font-weight: bold;
+}
+
+.colicone .ui-icon {
+	vertical-align: bottom !important;
+	margin-top: 2px;
+}
+
+.coleditar {
+	width: 32px;
+}
+
+.colexcluir {
+	width: 12px;
+}
+
+.coleditar .ui-icon-pencil:before {
+	content: "\f040";
+}
+
+.coleditar .ui-icon-check:before {
+	content: "\f00c";
+}
+
+.coleditar .ui-icon-close:before {
+	content: "\f00d";
+}
+
+.colexcluir .ui-icon-trash:before {
+	content: "\f1f8";
+}
+
+.ui-cell-editor .ui-calendar input {
+	width: calc(100% - 11px) !important;
+}
+
+.ui-cell-editor .ui-selectonemenu {
+	width: calc(100% - 32px) !important;
+}
+
+.ui-cell-editor .ui-cell-editor-input input {
+	width: calc(100% - 11px) !important;
 }

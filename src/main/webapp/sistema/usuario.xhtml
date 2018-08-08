@@ -10,7 +10,7 @@
 <ui:composition template="/template/layoutBase.xhtml">
 
 	<ui:define name="content">
-		<p:commandButton icon="ui-icon-plus" actionListener="#{usuarioController.cadastrar}" value="Cadastrar" ajax="true"
+		<p:commandButton icon="fa fa-fw fa-plus" actionListener="#{usuarioController.cadastrar}" value="Cadastrar" ajax="true"
 			update="dialogCadastro" style="margin-bottom: 10px" />
 
 		<p:dialog header="Cadastro Usuário" id="dialogCadastro" widgetVar="dialogCadastro" modal="true">
@@ -26,14 +26,7 @@
 				<p:ajax event="rowEditCancel" listener="#{usuarioController.onRowCancel}" update=":form:msgs" />
 
 				<p:column headerText="Id">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{usuario.id}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{usuario.id}" style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
+					<h:outputText value="#{usuario.id}" />
 				</p:column>
 
 				<p:column headerText="Nome">
@@ -43,7 +36,7 @@
 						</f:facet>
 						<f:facet name="input">
 							<p:inputText value="#{usuario.nome}" maxlength="20" required="true"
-								requiredMessage="O nome é de preenchimento obrigatório" style="width:100%" />
+								requiredMessage="O nome é de preenchimento obrigatório" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
@@ -54,7 +47,7 @@
 							<h:outputText value="#{usuario.senha}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{usuario.senha}" style="width:100%" />
+							<p:inputText value="#{usuario.senha}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
@@ -65,19 +58,19 @@
 							<h:outputText value="#{usuario.tipo}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:selectOneMenu value="#{usuario.tipo}" style="width:100%">
+							<p:selectOneMenu value="#{usuario.tipo}">
 								<f:selectItems value="#{usuarioController.tipos}" />
-							</h:selectOneMenu>
+							</p:selectOneMenu>
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 
-				<p:column style="width:32px">
-					<p:rowEditor />
+				<p:column styleClass="colicone coleditar">
+					<p:rowEditor editTitle="Editar" cancelTitle="Cancelar" saveTitle="Salvar" />
 				</p:column>
 
-				<p:column style="width:16px">
-					<p:commandLink actionListener="#{usuarioController.excluir(usuario)}" update=":form">
+				<p:column styleClass="colicone colexcluir">
+					<p:commandLink title="Excluir" actionListener="#{usuarioController.excluir(usuario)}" update=":form">
 						<h:outputText class="ui-icon ui-icon-trash" />
 					</p:commandLink>
 				</p:column>
