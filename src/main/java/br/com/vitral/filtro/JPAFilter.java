@@ -20,9 +20,9 @@ import javax.servlet.annotation.WebFilter;
 @WebFilter(servletNames = { "Faces Servlet" })
 public class JPAFilter implements Filter {
 
-	private EntityManagerFactory entityManagerFactory;
+	private EntityManagerFactory emFactory;
 
-	private String persistence_unit_name = "unit_app";
+	private static final String PERSISTENCE_UNIT_NAME = "unit_app";
 
 	public JPAFilter() {
 
@@ -30,14 +30,14 @@ public class JPAFilter implements Filter {
 
 	public void destroy() {
 
-		this.entityManagerFactory.close();
+		this.emFactory.close();
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
 		/* CRIANDO UM ENTITYMANAGER */
-		EntityManager entityManager = this.entityManagerFactory.createEntityManager();
+		EntityManager entityManager = this.emFactory.createEntityManager();
 
 		/* ADICIONANDO ELE NA REQUISIÇÃO */
 		request.setAttribute("entityManager", entityManager);
@@ -67,7 +67,7 @@ public class JPAFilter implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
 
 		/* CRIA O entityManagerFactory COM OS PARÂMETROS DEFINIDOS NO persistence.xml */
-		this.entityManagerFactory = Persistence.createEntityManagerFactory(this.persistence_unit_name);
+		this.emFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 	}
 
 }

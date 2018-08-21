@@ -6,18 +6,12 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
-import org.primefaces.context.PrimeFacesContext;
-import org.primefaces.context.RequestContext;
 import org.primefaces.event.RowEditEvent;
 
-import br.com.vitral.entidade.Usuario;
 import br.com.vitral.entidade.Usuario.TipoUsuario;
 import br.com.vitral.modelo.UsuarioModel;
 import br.com.vitral.persistencia.UsuarioDao;
@@ -53,7 +47,7 @@ public class UsuarioController implements Serializable {
 		init();
 		this.usuarioModel = new UsuarioModel();
 		PrimeFaces.current().executeScript("PF('dialogCadastro').hide();");
-		Uteis.MensagemInfo("Usuário cadastrado com sucesso");
+		Uteis.messageInformation("Usuário cadastrado com sucesso");
 	}
 
 	public void excluir(UsuarioModel usuarioModel) {
@@ -79,10 +73,10 @@ public class UsuarioController implements Serializable {
 
 	public void onRowEdit(RowEditEvent event) {
 		usuarioDao.salvar((UsuarioModel) event.getObject());
-		Uteis.MensagemInfo("Usuário alterado com sucesso");
+		Uteis.messageInformation("Usuário alterado com sucesso");
 	}
 
-	public void onRowCancel(RowEditEvent event) {
-		Uteis.MensagemInfo("Operação cancelada");
+	public void onRowCancel() {
+		Uteis.messageInformation("Operação cancelada");
 	}
 }

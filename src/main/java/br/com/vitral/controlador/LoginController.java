@@ -1,21 +1,13 @@
 package br.com.vitral.controlador;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.enterprise.inject.Produces;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.PrimeFaces;
-import org.primefaces.context.PrimeFacesContext;
-import org.primefaces.context.RequestContext;
-import org.primefaces.event.RowEditEvent;
 
 import br.com.vitral.entidade.Usuario;
 import br.com.vitral.entidade.Usuario.TipoUsuario;
@@ -37,10 +29,10 @@ public class LoginController implements Serializable {
 
 	public String login() {
 		if (StringUtils.isEmpty(usuarioModel.getNome()) || StringUtils.isBlank(usuarioModel.getNome())) {
-			Uteis.Mensagem("Favor informar o nome de usuário!");
+			Uteis.message("Favor informar o nome de usuário!");
 			return null;
 		} else if (StringUtils.isEmpty(usuarioModel.getSenha()) || StringUtils.isBlank(usuarioModel.getSenha())) {
-			Uteis.Mensagem("Favor informar a senha!");
+			Uteis.message("Favor informar a senha!");
 			return null;
 		} else {
 			Usuario usuario = usuarioDao.validaUsuario(usuarioModel);
@@ -53,7 +45,7 @@ public class LoginController implements Serializable {
 				facesContext.getExternalContext().getSessionMap().put("usuarioAutenticado", usuarioModel);
 				return "sistema/home?faces-redirect=true";
 			} else {
-				Uteis.Mensagem("Não foi possível efetuar o login com esse usuário e senha!");
+				Uteis.message("Não foi possível efetuar o login com esse usuário e senha!");
 				return null;
 			}
 		}

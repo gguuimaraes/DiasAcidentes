@@ -8,7 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 
 public class Uteis {
 
-	public static EntityManager JpaEntityManager() {
+	private Uteis() {
+
+	}
+
+	public static EntityManager getEntityManager() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = facesContext.getExternalContext();
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
@@ -16,19 +20,19 @@ public class Uteis {
 	}
 
 	// MOSTRAR MENSAGEM
-	public static void Mensagem(String mensagem) {
+	public static void message(String mensagem) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		facesContext.addMessage(null, new FacesMessage("Alerta", mensagem));
 	}
 
 	// MOSTRAR MENSAGEM
-	public static void MensagemAtencao(String mensagem) {
+	public static void messageWarning(String mensagem) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Atenção:", mensagem));
 	}
 
 	// MOSTRAR MENSAGEM
-	public static void MensagemInfo(String mensagem) {
+	public static void messageInformation(String mensagem) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", mensagem));
 	}

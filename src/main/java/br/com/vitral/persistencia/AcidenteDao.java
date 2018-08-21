@@ -20,27 +20,27 @@ public class AcidenteDao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Inject
 	Acidente acidente;
-	EntityManager entityManager;
+	transient EntityManager em;
 
 	public void salvar(AcidenteModel acidenteModel) {
-		entityManager = Uteis.JpaEntityManager();
+		em = Uteis.getEntityManager();
 		if (acidenteModel.getId() == null) {
 			acidente = new Acidente();
 			acidente.setObs(acidenteModel.getObs());
 			acidente.setData(acidenteModel.getData());
-			entityManager.persist(acidente);
+			em.persist(acidente);
 		} else {
-			acidente = entityManager.find(Acidente.class, acidenteModel.getId());
+			acidente = em.find(Acidente.class, acidenteModel.getId());
 			acidente.setObs(acidenteModel.getObs());
 			acidente.setData(acidenteModel.getData());
-			entityManager.merge(acidente);
+			em.merge(acidente);
 		}
 	}
 
 	public List<AcidenteModel> listar() {
-		List<AcidenteModel> acidentesModel = new ArrayList<AcidenteModel>();
-		entityManager = Uteis.JpaEntityManager();
-		Query query = entityManager.createNamedQuery("Acidente.findAll");
+		List<AcidenteModel> acidentesModel = new ArrayList<>();
+		em = Uteis.getEntityManager();
+		Query query = em.createNamedQuery("Acidente.findAll");
 		@SuppressWarnings("unchecked")
 		Collection<Acidente> acidentes = (Collection<Acidente>) query.getResultList();
 		AcidenteModel acidenteModel = null;
@@ -55,16 +55,16 @@ public class AcidenteDao implements Serializable {
 	}
 
 	private Date getDataMaisRecente() {
-		return (Date) Uteis.JpaEntityManager().createNamedQuery("Acidente.findDataMaisRecente").getSingleResult();
+		return (Date) Uteis.getEntityManager().createNamedQuery("Acidente.findDataMaisRecente").getSingleResult();
 	}
 
 	@SuppressWarnings("unchecked")
 	private List<Date> listarDatasOrdenadas() {
-		return Uteis.JpaEntityManager().createNamedQuery("Acidente.findDatasOrdenadas").getResultList();
+		return Uteis.getEntityManager().createNamedQuery("Acidente.findDatasOrdenadas").getResultList();
 	}
 
 	public void remover(int id) {
-		Uteis.JpaEntityManager().remove(Uteis.JpaEntityManager().find(Acidente.class, id));
+		Uteis.getEntityManager().remove(Uteis.getEntityManager().find(Acidente.class, id));
 	}
 
 	public long getDiasSemAcidente() {
@@ -73,7 +73,7 @@ public class AcidenteDao implements Serializable {
 
 	public long getRecorde() {
 		List<Date> datas = listarDatasOrdenadas();
-		if (datas.size() == 0)
+		if (datas.isEmpty())
 			return 0;
 
 		long maiorDiferenca = TimeUnit.DAYS.convert(new Date().getTime() - datas.get(datas.size() - 1).getTime(),

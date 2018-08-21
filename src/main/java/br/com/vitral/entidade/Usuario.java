@@ -11,8 +11,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import br.com.vitral.modelo.UsuarioModel;
-
 @Table(name = "usuario")
 @Entity
 

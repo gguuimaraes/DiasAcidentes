@@ -46,7 +46,7 @@ public class AcidenteController implements Serializable {
 		init();
 		this.acidenteModel = new AcidenteModel();
 		PrimeFaces.current().executeScript("PF('dialogCadastro').hide();");
-		Uteis.MensagemInfo("Acidente cadastrado com sucesso");
+		Uteis.messageInformation("Acidente cadastrado com sucesso");
 	}
 
 	public void excluir(AcidenteModel acidenteModel) {
@@ -60,11 +60,11 @@ public class AcidenteController implements Serializable {
 
 	public void onRowEdit(RowEditEvent event) {
 		acidenteDao.salvar((AcidenteModel) event.getObject());
-		Uteis.MensagemInfo("Acidente alterado com sucesso");
+		Uteis.messageInformation("Acidente alterado com sucesso");
 	}
 
-	public void onRowCancel(RowEditEvent event) {
-		Uteis.MensagemInfo("Operação cancelada");
+	public void onRowCancel() {
+		Uteis.messageInformation("Operação cancelada");
 	}
 
 	public AcidenteModel getAcidenteModel() {

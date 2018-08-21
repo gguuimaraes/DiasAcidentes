@@ -18,11 +18,11 @@ public class UsuarioDao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Inject
 	Usuario usuario;
-	EntityManager entityManager;
+	transient EntityManager em;
 
 	public Usuario validaUsuario(UsuarioModel usuarioModel) {
 		try {
-			Query query = Uteis.JpaEntityManager().createNamedQuery("Usuario.findUser");
+			Query query = Uteis.getEntityManager().createNamedQuery("Usuario.findUser");
 			query.setParameter("nome", usuarioModel.getNome());
 			query.setParameter("senha", usuarioModel.getSenha());
 			return (Usuario) query.getSingleResult();
@@ -32,26 +32,26 @@ public class UsuarioDao implements Serializable {
 	}
 
 	public void salvar(UsuarioModel usuarioModel) {
-		entityManager = Uteis.JpaEntityManager();
+		em = Uteis.getEntityManager();
 		if (usuarioModel.getId() == null) {
 			usuario = new Usuario();
 			usuario.setNome(usuarioModel.getNome());
 			usuario.setSenha(usuarioModel.getSenha());
 			usuario.setTipo(usuarioModel.getTipo());
-			entityManager.persist(usuario);
+			em.persist(usuario);
 		} else {
-			usuario = entityManager.find(Usuario.class, usuarioModel.getId());
+			usuario = em.find(Usuario.class, usuarioModel.getId());
 			usuario.setNome(usuarioModel.getNome());
 			usuario.setSenha(usuarioModel.getSenha());
 			usuario.setTipo(usuarioModel.getTipo());
-			entityManager.merge(usuario);
+			em.merge(usuario);
 		}
 	}
 
 	public List<UsuarioModel> listar() {
-		List<UsuarioModel> usuariosModel = new ArrayList<UsuarioModel>();
-		entityManager = Uteis.JpaEntityManager();
-		Query query = entityManager.createNamedQuery("Usuario.findAll");
+		List<UsuarioModel> usuariosModel = new ArrayList<>();
+		em = Uteis.getEntityManager();
+		Query query = em.createNamedQuery("Usuario.findAll");
 		@SuppressWarnings("unchecked")
 		Collection<Usuario> usuarios = (Collection<Usuario>) query.getResultList();
 		UsuarioModel usuarioModel = null;
@@ -67,7 +67,7 @@ public class UsuarioDao implements Serializable {
 	}
 	
 	public void remover(int id) {
-		entityManager = Uteis.JpaEntityManager();
-		entityManager.remove(entityManager.find(Usuario.class, id));
+		em = Uteis.getEntityManager();
+		em.remove(em.find(Usuario.class, id));
 	}
 }
