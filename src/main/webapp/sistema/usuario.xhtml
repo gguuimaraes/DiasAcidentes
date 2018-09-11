@@ -69,7 +69,7 @@
 					<p:rowEditor editTitle="Editar" cancelTitle="Cancelar" saveTitle="Salvar" />
 				</p:column>
 
-				<p:column styleClass="colicone colexcluir">
+				<p:column styleClass="colicone colexcluir" rendered="#{loginController.usuarioAutenticado.tipo == loginController.tipos[0]}">
 					<p:commandLink title="Excluir" actionListener="#{usuarioController.excluir(usuario)}" update=":form">
 						<h:outputText class="ui-icon ui-icon-trash" />
 					</p:commandLink>
